@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Highlander Says{% endblock %}
+
+{% block body %}
+    <h1>Highlander Says</h1>
+    <p>{{ forecast|upper|raw }}</p>
+{% endblock %}

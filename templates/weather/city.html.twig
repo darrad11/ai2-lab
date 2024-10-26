@@ -3,18 +3,18 @@
 {# @var location \App\Entity\Location #}
 {# @var weather \App\Entity\MeteoData #}
 
-{% block title %}Weather in {{ location.city }}, {{ location.country }}{% endblock %}
+{% block title %}Weather in {{ location.city }}{% if location.country %}, {{ location.country }}{% endif %}{% endblock %}
 
 {% block body %}
     <main>
         <h1>Weather in {{ location.city }}, {{ location.country }}</h1>
 
         <ul>
-            {% if measurements is empty %}
+            {% if meteoData is empty %}
                 <li>No measurements available.</li>
             {% else %}
-                {% for measurement in measurements %}
-                    <li>{{ measurement.date|date('d.m.Y') }}: {{ measurement.celsius_temperature }}&deg;C</li>
+                {% for date in meteoData %}
+                    <li>{{ date.date|date('d.m.Y') }}: {{ date.celsiusTemperature }}&deg;C</li>
                 {% endfor %}
             {% endif %}
         </ul>

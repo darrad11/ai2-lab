@@ -3,3 +3,11 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+#atrybutami
+#weather_city:
+#    path: /weather/{city}/{country?}
+#    controller: App\Controller\WeatherController::city
+#    requirements:
+#        city: '[a-zA-Z]+'
+#        country: '[A-Z]{2}'
