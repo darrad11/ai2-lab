@@ -26,11 +26,48 @@ class WeatherController extends AbstractController
             'city' => $city,
         ]);
 
+        $dummyForecast = [
+            [
+                "date" => new \DateTime('2024-10-28'),
+                "celsiusTemperature" => 18,
+                "flcelsiusTemperature" => 16,
+                "pressure" => 1000,
+                "humidity" => 40,
+                "wind_speed" => 3.4,
+                "wind_direction" => 270,
+                "cloudiness" => 70,
+                'icon' => 'cloud',
+            ],
+            [
+                "date" => new \DateTime('2024-10-29'),
+                "celsiusTemperature" => 21,
+                "flcelsiusTemperature" => 20,
+                "pressure" => 1024,
+                "humidity" => 16,
+                "wind_speed" => 3.4,
+                "wind_direction" => 270,
+                "cloudiness" => 10,
+                'icon' => 'sun',
+            ],
+            [
+                "date" => new \DateTime('2024-10-30'),
+                "celsiusTemperature" => 17,
+                "flcelsiusTemperature" => 18,
+                "pressure" => 1003,
+                "humidity" => 59,
+                "wind_speed" => 3.4,
+                "wind_direction" => 270,
+                "cloudiness" => 70,
+                'icon' => 'cloud-rain',
+            ],
+        ];
+
         $meteoData = $meteoDataRepository->findByLocation($location);
         return $this->render('weather/city.html.twig', [
             //'controller_name' => 'WeatherController',
             'location' => $location,
             'meteoData' => $meteoData,
+            'dummyForecast' =>$dummyForecast,
         ]);
     }
 

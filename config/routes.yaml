@@ -11,3 +11,26 @@ controllers:
 #    requirements:
 #        city: '[a-zA-Z]+'
 #        country: '[A-Z]{2}'
+
+# lab D
+home:
+    path: /
+    controller: App\Controller\DefaultController::index
+
+app_location_index:
+    path: /locations
+    controller: App\Controller\LocationController::index
+
+app_location_show:
+    path: /location/{id}
+    controller: App\Controller\LocationController::show
+    requirements:
+        id: '\d+'
+
+weather_city:
+    path: /weather/{country}/{city}
+    controller: App\Controller\WeatherController::city
+    requirements:
+        country: '[A-Z]{2}'
+        city: '[a-zA-Z]+'
+
