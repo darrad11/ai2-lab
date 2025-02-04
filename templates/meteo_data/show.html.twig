@@ -1,0 +1,70 @@
+{% extends 'layout_crud.html.twig' %}
+
+{% block title %}MeteoData{% endblock %}
+
+{% block body %}
+    <h1>MeteoData</h1>
+
+    <script>
+        function toggleDetails(id) {
+            const details = document.getElementById(id);
+            details.style.display = details.style.display === 'none' ? 'table-row' : 'none';
+        }
+    </script>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ meteo_datum.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ meteo_datum.date ? meteo_datum.date|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>{{ meteo_datum.location.city }}</td>
+            </tr>
+            <tr>
+                <th>Temperature</th>
+                <td>{{ meteo_datum.celsiusTemperature }}</td>
+            </tr>
+            <tr>
+                <th>Feels Like</th>
+                <td>{{ meteo_datum.flCelsiusTemperature }}</td>
+            </tr>
+            <tr>
+                <th>Pressure</th>
+                <td>{{ meteo_datum.pressure }}</td>
+            </tr>
+            <tr>
+                <th>Humidity</th>
+                <td>{{ meteo_datum.humidity }}</td>
+            </tr>
+            <tr>
+                <th>Wind Speed</th>
+                <td>{{ meteo_datum.windSpeed }}</td>
+            </tr>
+            <tr>
+                <th>Wind Direction</th>
+                <td>{{ meteo_datum.windDirection }}</td>
+            </tr>
+            <tr>
+                <th>Cloudiness</th>
+                <td>{{ meteo_datum.cloudiness }}</td>
+            </tr>
+            <tr>
+                <th>Icon</th>
+                <td><i class="bi-{{ meteo_datum.icon }}"></i></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="button-container">
+        <a href="{{ path('app_meteo_data_index') }}" class="btn btn-secondary me-2">back to list</a>
+        <a href="{{ path('app_meteo_data_edit', {'id': meteo_datum.id}) }}" class="btn btn-secondary me-2">edit</a>
+    </div>
+
+    {{ include('meteo_data/_delete_form.html.twig') }}
+{% endblock %}

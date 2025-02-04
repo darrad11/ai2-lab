@@ -1,0 +1,144 @@
+body {
+    background-color: #ebebeb;
+}
+
+h1 {
+    margin: 1em;
+}
+
+.table {
+    width: 90%;
+    margin: 2em;
+}
+
+th, td {
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+thead {
+    background-color: #f8f9fa;
+    font-weight: bold;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+nav {
+    width: 100%;
+}
+
+.navbar {
+    width: 100%;
+}
+
+nav.menu ul {
+    display: flex;
+    gap: 1em;
+    margin: 1em 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+nav.menu ul a{
+    color: black;
+    text-decoration: none;
+}
+
+nav.menu ul a:hover {
+    text-decoration: underline;
+}
+
+nav.menu img {
+    width: 12px;
+    height: auto;
+}
+
+.nav-item {
+    margin: 0 15px;
+}
+
+.nav-item a {
+    text-decoration: none;
+}
+
+.forecast-card {
+    background-color: white;
+    margin-bottom: 1em;
+    padding: 1em;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+.forecast-card-header .day {
+    font-size: 1.2em;
+    font-variant: small-caps;
+}
+
+.forecast-card-general .temperature {
+    font-size: 3em;
+    font-weight: bold;
+}
+
+.forecast-card-details dl {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 1em;
+}
+
+.forecast-icon {
+    font-size: 3em;
+}
+
+form div {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: 2em auto;
+}
+
+.button-container {
+    display: inline;
+    justify-content: right;
+    margin: 0.5em 0;
+}
+
+.btn {
+    margin: 0.5em;
+}
+
+form {
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 2em;
+    width: 90%;
+    margin: 2em auto;
+}
+
+form label {
+    margin-bottom: 0.5em;
+    font-weight: bold;
+    color: #333;
+}
+
+input[type="text"], input[type="password"] {
+    padding: 0.8em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 1em;
+    width: 100%;
+}
+
+button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.8em;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}

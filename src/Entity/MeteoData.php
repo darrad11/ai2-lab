@@ -24,6 +24,27 @@ class MeteoData
     #[ORM\Column(type: Types::DECIMAL, precision: 3, scale: 0)]
     private ?string $celsius_temperature = null;
 
+    #[ORM\Column(type: Types::DECIMAL, precision: 3, scale: 0, nullable: true)]
+    private ?string $flcelsius_temperature = null;
+
+    #[ORM\Column(type: Types::INTEGER, nullable: true)]
+    private ?int $pressure = null;
+
+    #[ORM\Column(type: Types::INTEGER, nullable: true)]
+    private ?int $humidity = null;
+
+    #[ORM\Column(type: Types::DECIMAL, precision: 4, scale: 1, nullable: true)]
+    private ?float $wind_speed = null;
+
+    #[ORM\Column(type: Types::STRING, length: 10, nullable: true)]
+    private ?string $wind_direction = null;
+
+    #[ORM\Column(type: Types::INTEGER, nullable: true)]
+    private ?int $cloudiness = null;
+
+    #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
+    private ?string $icon = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -64,4 +85,89 @@ class MeteoData
 
         return $this;
     }
+
+    public function getFlCelsiusTemperature(): ?string
+    {
+        return $this->flcelsius_temperature;
+    }
+
+    public function setFlCelsiusTemperature(?string $flcelsius_temperature): self
+    {
+        $this->flcelsius_temperature = $flcelsius_temperature;
+
+        return $this;
+    }
+
+    public function getPressure(): ?int
+    {
+        return $this->pressure;
+    }
+
+    public function setPressure(?int $pressure): self
+    {
+        $this->pressure = $pressure;
+
+        return $this;
+    }
+
+    public function getHumidity(): ?int
+    {
+        return $this->humidity;
+    }
+
+    public function setHumidity(?int $humidity): self
+    {
+        $this->humidity = $humidity;
+
+        return $this;
+    }
+
+    public function getWindSpeed(): ?float
+    {
+        return $this->wind_speed;
+    }
+
+    public function setWindSpeed(?float $wind_speed): self
+    {
+        $this->wind_speed = $wind_speed;
+
+        return $this;
+    }
+
+    public function getWindDirection(): ?string
+    {
+        return $this->wind_direction;
+    }
+
+    public function setWindDirection(?string $wind_direction): self
+    {
+        $this->wind_direction = $wind_direction;
+
+        return $this;
+    }
+
+    public function getCloudiness(): ?int
+    {
+        return $this->cloudiness;
+    }
+
+    public function setCloudiness(?int $cloudiness): self
+    {
+        $this->cloudiness = $cloudiness;
+
+        return $this;
+    }
+
+    public function getIcon(): ?string
+    {
+        return $this->icon;
+    }
+
+    public function setIcon(?string $icon): self
+    {
+        $this->icon = $icon;
+
+        return $this;
+    }
+    
 }

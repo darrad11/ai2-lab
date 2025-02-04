@@ -1,0 +1,64 @@
+{% extends 'layout_crud.html.twig' %}
+
+{% block title %}MeteoData index{% endblock %}
+
+{% block body %}
+    <h1>MeteoData index</h1>
+
+    <script>
+        function toggleDetails(id) {
+            const details = document.getElementById(id);
+            details.style.display = details.style.display === 'none' ? 'table-row' : 'none';
+        }
+    </script>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>City</th>
+                <th>Temperature[°C]</th>
+                <th>Feels Like[°C]</th>
+                <th>Icon</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for meteo_datum in meteo_datas %}
+            <tr>
+                <td>{{ meteo_datum.id }}</td>
+                <td>{{ meteo_datum.date ? meteo_datum.date|date('Y-m-d') : '' }}</td>
+                <td>{{ meteo_datum.location.city }}</td>
+                <td>{{ meteo_datum.celsiusTemperature }}</td>
+                <td>{{ meteo_datum.flcelsiusTemperature }}</td>
+                <td><i class="bi-{{ meteo_datum.icon }}"></i></td>
+                <td>
+                    <div class="button-container">
+                        <a href="#" class="btn btn-info me-2" onclick="toggleDetails({{ meteo_datum.id }})">details</a>
+                        <a href="{{ path('app_meteo_data_show', {'id': meteo_datum.id}) }}" class="btn btn-secondary me-2">show this</a>
+                        <a href="{{ path('app_meteo_data_edit', {'id': meteo_datum.id}) }}" class="btn btn-secondary me-2">edit</a>
+                    </div>
+                </td>
+            </tr>
+            <tr id="{{ meteo_datum.id }}" style="display: none;">
+                <td colspan="7">
+                    <strong>Pressure:</strong> {{ meteo_datum.pressure }} hPa<br>
+                    <strong>Humidity:</strong> {{ meteo_datum.humidity }}%<br>
+                    <strong>Wind Speed:</strong> {{ meteo_datum.windSpeed }} "m/s"<br>
+                    <strong>Wind Direction:</strong> {{ meteo_datum.windDirection }}°<br>
+                    <strong>Cloudiness:</strong> {{ meteo_datum.cloudiness }}%<br>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="button-container">
+        <a href="{{ path('app_meteo_data_new') }}" class="btn btn-primary">Create new</a>
+    </div>
+{% endblock %}
