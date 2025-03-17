@@ -1,0 +1,15 @@
+{% extends 'layout_crud.html.twig' %}
+
+{% block title %}Edit Location{% endblock %}
+
+{% block body %}
+    <h1>Edit Location</h1>
+
+    {{ include('location/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <div class="button-container">
+        <a href="{{ path('app_location_index') }}" class="btn btn-secondary me-2">back to list</a>
+    </div>
+
+    {{ include('location/_delete_form.html.twig') }}
+{% endblock %}

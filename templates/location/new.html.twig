@@ -1,0 +1,13 @@
+{% extends 'layout_crud.html.twig' %}
+
+{% block title %}New Location{% endblock %}
+
+{% block body %}
+    <h1>Create new Location</h1>
+
+    {{ include('location/_form.html.twig') }}
+
+    <div class="button-container">
+        <a href="{{ path('app_location_index') }}" class="btn btn-secondary me-2">back to list</a>
+    </div>
+{% endblock %}
