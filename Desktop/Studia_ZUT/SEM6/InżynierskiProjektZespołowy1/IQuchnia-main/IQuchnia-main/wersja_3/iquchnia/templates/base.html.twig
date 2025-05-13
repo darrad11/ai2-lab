@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}iQuchnia{% endblock %}</title>
+
+    <!-- Link do Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Link do Bootstrap Icons CSS (opcjonalnie, jeśli używasz ikon) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Niestandardowe style, jeśli je masz -->
+    {{ encore_entry_link_tags('app') }} <!-- Wczytanie plików CSS -->
+
+</head>
+<body>
+<!-- Górny pasek nawigacyjny -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <!-- Logo i nazwa iQuchnia obok siebie -->
+        <a class="navbar-brand d-flex align-items-center" href="{{ path('recipe_list') }}">
+            <img src="{{ asset('images/logo.jpg') }}" id="logo" alt="Logo iQuchnia" style="max-width: 150px; height: auto;">
+            <span class="ms-2 h3 mb-0">iQuchnia</span> <!-- Nazwa obok logo -->
+        </a>
+
+        <a href="{{ path('recipe_filter') }}" class="ms-3 h5 mb-0 text-decoration-none text-dark">
+            Filtruj
+        </a>
+
+        {% if app.user and (is_granted('ROLE_USER') or is_granted('ROLE_ADMIN')) %}
+                <a class="ms-3 h5 mb-0 text-decoration-none text-dark" href="{{ path('recipe_new') }}">Dodaj przepis</a>
+        {% endif %}
+
+        <div class="d-flex ms-auto"> <!-- ms-auto dodaje margines do lewej, co pcha elementy na prawo -->
+            <!-- Pasek wyszukiwania -->
+            <form action="{{ app.request.uri }}" method="get" class="d-flex me-3">
+                <input type="text" name="search" class="form-control me-2" placeholder="Wyszukaj przepisy..." value="{{ search ?? '' }}" />
+                <button class="btn btn-outline-success" type="submit">
+                    <i class="bi bi-search"></i> <!-- Ikona wyszukiwania -->
+                </button>
+            </form>
+
+
+            {% if app.user %}
+                <!-- Ikona wylogowania -->
+                <form action="{{ path('app_logout') }}" method="post" class="d-inline">
+                    <button type="submit" class="btn btn-link p-0 text-danger" style="border: none; background: none;">
+                        <i class="bi bi-box-arrow-right" style="font-size: 1.5rem;" title="Wyloguj"></i>
+                    </button>
+                </form>
+            {% else %}
+                <!-- Ikona logowania -->
+                <a href="{{ path('app_login') }}" class="btn btn-link p-0 text-primary">
+                    <i class="bi bi-box-arrow-in-right" style="font-size: 1.5rem;" title="Zaloguj"></i>
+                </a>
+            {% endif %}
+
+        </div>
+    </div>
+</nav>
+
+<!-- Treść strony -->
+<div class="container mt-4">
+    {% block body %}{% endblock %}
+</div>
+
+<!-- Wczytanie plików JS -->
+{{ encore_entry_script_tags('app') }}
+
+<!-- Link do Bootstrap JS (opcjonalnie, jeśli korzystasz z interakcji JS) -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

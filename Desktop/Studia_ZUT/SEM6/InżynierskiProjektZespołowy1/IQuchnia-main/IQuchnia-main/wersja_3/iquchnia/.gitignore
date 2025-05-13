@@ -1,0 +1,29 @@
+# Ignorowanie plików systemowych
+.DS_Store
+Thumbs.db
+
+# Ignorowanie katalogu var/cache
+/var/cache/
+
+# Ignorowanie plików IDE (np. PhpStorm, VSCode)
+.idea/
+.vscode/
+
+# Ignorowanie plików do testów PHPUnit
+/phpunit.xml
+/phpunit.xml.dist
+
+# Ignorowanie plików konfiguracyjnych Symfony
+/.env.local
+/.env.*.local
+
+# Ignorowanie logów
+/var/log/
+/var/sessions/
+
+###> symfony/webpack-encore-bundle ###
+/node_modules/
+/public/build/
+npm-debug.log
+yarn-error.log
+###< symfony/webpack-encore-bundle ###

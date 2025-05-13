@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Szczegóły przepisu{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <!-- Tytuł przepisu -->
+        <h1 class="mb-4 text-center">{{ recipe.name }}</h1>
+
+        <div class="row">
+            <!-- Obraz przepisu -->
+            <div class="col-md-6 mb-4">
+                <img src="{{ asset(recipe.image) }}" class="img-fluid rounded shadow" alt="{{ recipe.name }}" style="object-fit: cover; height: 300px;">
+            </div>
+
+            <div class="col-md-6">
+                <!-- Informacje o przepisie -->
+                <p><strong>Opis:</strong> {{ recipe.description }}</p>
+                <p><strong>Widoki:</strong> {{ recipe.views }}</p>
+                <p><strong>Kuchnia:</strong> {{ recipe.cuisine }}</p>
+                <p><strong>Trudność:</strong> {{ recipe.difficulty }}</p>
+                <p><strong>Wegetariański:</strong> {{ recipe.isVegetarian ? 'Tak' : 'Nie' }}</p>
+                <p><strong>Przepis stworzony przez:</strong> {{ recipe.user.username }}</p>
+
+                <!-- Polubienie przepisu -->
+                <a href="{{ path('recipe_favorite', { 'id': recipe.id }) }}" class="btn btn-outline-danger">
+                    {% if isFavorite %}
+                        ❤️ Usuń z ulubionych
+                    {% else %}
+                        🤍 Dodaj do ulubionych
+                    {% endif %}
+                </a>
+            </div>
+        </div>
+        <!-- Instrukcje gotowania -->
+        <div class="mt-4">
+            <h3>Instrukcje:</h3>
+            <p>{{ recipe.instructions }}</p>
+        </div>
+
+        <!-- Link do autora przepisu (opcjonalne) -->
+        <div class="mt-4">
+            <p><strong>Przepis stworzony przez:</strong> {{ recipe.user.username }}</p>
+        </div>
+
+        <!-- Przycisk powrotu do poprzedniej strony -->
+        <div class="mt-4">
+            <button class="btn btn-secondary" onclick="window.history.back()">Cofnij</button>
+        </div>
+    </div>
+{% endblock %}

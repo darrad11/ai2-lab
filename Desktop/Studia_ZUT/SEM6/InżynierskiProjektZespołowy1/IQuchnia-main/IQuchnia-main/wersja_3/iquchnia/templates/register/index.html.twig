@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h1 class="text-center mb-4">Register</h1>
+                {% if app.user %}
+                    <div class="alert alert-info text-center">
+                        You are already registered and logged in. <a href="{{ path('app_login') }}">Go to Login</a>
+                    </div>
+                {% else %}
+                    {{ form_start(registrationForm, {'attr': {'class': 'border p-4 rounded shadow-sm'}}) }}
+                        <div class="mb-3">
+                            {{ form_label(registrationForm.username, 'Username', {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(registrationForm.username, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(registrationForm.username) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_label(registrationForm.password.first, 'Password', {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(registrationForm.password.first, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(registrationForm.password.first) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_label(registrationForm.password.second, 'Repeat Password', {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(registrationForm.password.second, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(registrationForm.password.second) }}
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Register</button>
+                    {{ form_end(registrationForm) }}
+                {% endif %}
+                <p class="text-center mt-3">
+                    Already have an account? <a href="{{ path('app_login') }}">Log in here</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

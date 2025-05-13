@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dodaj nowy przepis{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>Dodaj nowy przepis</h1>
+
+        {{ form_start(form) }}
+
+        <div class="row">
+            {% for field in form %}
+                {% if field.vars.name != '_token' and field.vars.block_prefixes|last != 'button' %}
+                    <div class="mb-3 col-md-6">
+                        {{ form_label(field, null, { 'label_attr': { 'class': 'form-label' } }) }}
+                        {{ form_widget(field, { 'attr': { 'class': 'form-control' } }) }}
+                        {{ form_errors(field) }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <button type="submit" class="btn btn-success mt-3">Dodaj przepis</button>
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
